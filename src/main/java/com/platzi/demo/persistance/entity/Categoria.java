@@ -1,6 +1,8 @@
 package com.platzi.demo.persistance.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -10,9 +12,13 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategoria;
 
-    private String Descripcion;
+    private String descripcion;
 
-    private Boolean Estado;
+    private Boolean estado;
+
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     public Integer getIdCategoria() {
         return idCategoria;
@@ -23,18 +29,18 @@ public class Categoria {
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
+        descripcion = descripcion;
     }
 
     public Boolean getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(Boolean estado) {
-        Estado = estado;
+        estado = estado;
     }
 }
